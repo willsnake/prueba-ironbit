@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!--Meta -->
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+
+    <!--Title-->
+    <title>AngularJS Feed Reader</title>
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" type="text/css" href="css/bootstrap-combined.min.css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap-responsive.min.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+
+    <!--Scripts-->
+    <script type="text/javascript" src="js/angular.min.js"></script>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript" src="js/script.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+</head>
+
+<body ng-app="AppRSS" class="ng-scope">
+    <div class="container-fluid">
+        <div data-ng-controller="FeedCtrl" class="ng-scope">
+            <div class="row-fluid">
+                <h4>Ironbit Daniel Rodríguez Monroy</h4>
+                <form class="ng-pristine ng-valid">
+                    <div class="input-prepend span12">
+                        <input type="text" class="span10 ng-pristine ng-valid" autocomplete="off" placeholder="Ingrese URL" ng-blur="loadFeed(this)" data-ng-model="feedSrc">
+                    </div>
+                </form>
+            </div>
+            <div ng-repeat="audio in audios">
+                <p class="audioFiles" ng-click="playAudio(audio)">{{audio.title}}</p>
+            </div>
+        </div>
+    </div>
+    <script>
+        if (window.parent && window.parent.parent) {
+            window.parent.parent.postMessage(["resultsFrame", {
+                height: document.body.getBoundingClientRect().height,
+                slug: "None"
+            }], "*")
+        }
+    </script>
+</body>
+
+</html>
